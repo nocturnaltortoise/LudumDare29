@@ -1,10 +1,13 @@
 package main;
 
+import graphics.Tile;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -25,6 +28,8 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 
 	Timer timer = new Timer(20, this);
 	Player hero = new Player(windowSize.width / 2, windowSize.height / 2,  16,16, playerImage);
+	Rectangle tileSize = new Rectangle(0,0,16,16);
+	Tile wallTile = new Tile(loadTexture("res/edgeblock.png"),tileSize);
 	
 	public Game(){
 		
@@ -78,6 +83,12 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 		
 		playerImage = loadTexture("res/Man.png");
 		g2d.drawImage(playerImage, hero.getPlayerDimensions().x, hero.getPlayerDimensions().y, null);
+		
+		for(int i = 0; i < 10; i++){
+			
+			g2d.drawImage(wallTile.getTileImage(), 0 + i*16, 0, null);
+			
+		}
 		
 	}
 
