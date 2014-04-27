@@ -1,6 +1,7 @@
 package main;
 
 import graphics.Tile;
+import graphics.TileMap;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,8 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -25,11 +29,14 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private Dimension windowSize = new Dimension(1024, 768);
 	public static boolean keys[] = new boolean[256];
 	private Image playerImage;
-
+	private Image enemyImage;
+	
+	TileMap roomOne = new TileMap();
 	Timer timer = new Timer(20, this);
-	Player hero = new Player(windowSize.width / 2, windowSize.height / 2,  16,16, playerImage);
+	Player hero = new Player(windowSize.width / 2, windowSize.height / 2,48,48, playerImage);
 	Rectangle tileSize = new Rectangle(0,0,16,16);
 	Tile wallTile = new Tile(loadTexture("res/edgeblock.png"),tileSize);
+	Enemy testEnemy = new Enemy(100,100,48,48,enemyImage);
 	
 	public Game(){
 		
@@ -57,8 +64,11 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	private void update(){
 
 		hero.updatePlayer();
+		testEnemy.updateEnemy();
 		
 	}
+	
+	
 	
 	private Image loadTexture(String filename){
 		Image tempImg;
@@ -76,17 +86,24 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	
 	@Override
 	public void paintComponent(Graphics g){
-		
-		
 		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g2d);
-		
-		playerImage = loadTexture("res/Man.png");
+		enemyImage = loadTexture("res/grunt.png");
+		playerImage = loadTexture("res/newmanx3.png");
 		g2d.drawImage(playerImage, hero.getPlayerDimensions().x, hero.getPlayerDimensions().y, null);
+		g2d.drawImage(enemyImage, testEnemy.getDimensions().x, testEnemy.getDimensions().y, null);
 		
-		for(int i = 0; i < 10; i++){
+		for(int x = 0; x <= 3; x++){
 			
-			g2d.drawImage(wallTile.getTileImage(), 0 + i*16, 0, null);
+			for(int y = 0; y <= 7*16; y+=16){
+				
+				if(roomOne.roomOne[y/16] == 'x'){
+					
+					g2d.drawImage(wallTile.getTileImage(), x, y, null);
+					
+				}
+				
+			}
 			
 		}
 		
@@ -114,7 +131,7 @@ public class Game extends JPanel implements ActionListener, KeyListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == timer){
-			
+
 			update();
 			repaint();
 			

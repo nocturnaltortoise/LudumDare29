@@ -8,9 +8,11 @@ import java.io.File;
 public class Player {
 
 	private Rectangle playerDimensions = new Rectangle(0,0,0,0);
-	//private File playerImage = new File("/res/Man.png");
 	private Image playerImage;
-
+	private boolean playerFiring;
+	private int ammo;
+	private String gunEquipped;
+	
 	public Rectangle getPlayerDimensions(){
 		return playerDimensions;
 	}
@@ -43,6 +45,9 @@ public class Player {
 		}
 		if(Game.keys[KeyEvent.VK_S]){
 			playerDimensions.y++;
+		}
+		if(Game.keys[KeyEvent.VK_SPACE]){
+			playerFiring = true;
 		}
 		
 	}	

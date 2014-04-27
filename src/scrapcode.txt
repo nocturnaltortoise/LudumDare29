@@ -1,0 +1,83 @@
+
+//private boolean[][] map = new boolean[17][17];
+
+/*
+	private void loadMap(String filename) throws IOException{
+		
+		ArrayList<String> lines = new ArrayList<String>();
+		String line;
+		
+		int width = 0;
+		int height = 0;
+		
+		BufferedReader reader = new BufferedReader(new FileReader(filename));
+		while(true){
+			
+			line = reader.readLine();
+			
+			if(line == null){
+				reader.close();
+				break;
+			}
+			
+			lines.add(line);
+			width = Math.max(width, line.length());
+		}
+		
+		height = lines.size();
+		
+		for(int x=0; x < line.length(); x++){
+			
+			char ch = line.charAt(x);
+			
+			if(ch == 'x'){
+				
+				map[x][0] = true;
+			}
+		}
+		
+		
+	}*/
+	
+	
+	/*
+		for(int i = 0; i < 17; i++){
+			
+			for(int j = 0; j < 17; j++){
+				
+				if(map[i][j] = true){
+					
+					g2d.drawImage(wallTile.getTileImage(), i, j, null);
+					
+				}
+				
+			}
+			
+		}*/
+		
+		/*
+		for(int i = 0; i < windowSize.width; i++){
+			
+			for(int j = 0; j < 10; j++){
+				
+				g2d.drawImage(wallTile.getTileImage(), 0 + i*16, 0 + j * 16, null);
+			}
+		}
+		
+		for(int k = 0; k < windowSize.width; k++){
+			
+			for(int l = windowSize.height; l < windowSize.height; l--){
+				
+				g2d.drawImage(wallTile.getTileImage(), 0 + k*16, 0 + l * 16, null);
+			}
+			
+		}*/
+		
+		
+		
+/*
+			try {
+				loadMap("/src/Map.txt");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}*/
